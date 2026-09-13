@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1267945147479698437}
+  - component: {fileID: 8244249027732655063}
+  - component: {fileID: 3322307810570733766}
+  - component: {fileID: 5360925641512172575}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -32,6 +35,49 @@ Transform:
   - {fileID: 2280865929574551951}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8244249027732655063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963403061471546615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd9d66165a0802e45adcc4da90ccd003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.EnemyController
+  detectionRange: 15
+  attackDistance: 2
+  moveSpeed: 3
+  acceleration: 3
+  attackDamage: 25
+--- !u!114 &3322307810570733766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963403061471546615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c0339a4cc15ef346975ed53814ca65d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.Health
+  <MaxHealth>k__BackingField: 100
+--- !u!114 &5360925641512172575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963403061471546615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7255262fbf6a0a428f84c6e0ae65d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.EnemyAnimatorController
+  animator: {fileID: 1343432053254588601}
 --- !u!1 &3327974810935393523
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,6 +199,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
+--- !u!95 &1343432053254588601 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
+  m_PrefabInstance: {fileID: 4885915197704615208}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4919329926724768451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
