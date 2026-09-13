@@ -6,6 +6,7 @@ namespace ZombieRace
     public class GameInstaller : MonoInstaller
     {
         [SerializeField] private EnemyController enemyPrefab;
+        [SerializeField] private GroundSegment groundPrefab;
 
         public override void InstallBindings()
         {
@@ -18,7 +19,11 @@ namespace ZombieRace
             Container.BindMemoryPool<EnemyController, EnemyPool>()
                 .WithInitialSize(10)
                 .FromComponentInNewPrefab(enemyPrefab)
-                .UnderTransformGroup("Enemies");    
+                .UnderTransformGroup("Pool:Enemies");    
+            Container.BindMemoryPool<GroundSegment, GroundPool>()
+                .WithInitialSize(5)
+                .FromComponentInNewPrefab(groundPrefab)
+                .UnderTransformGroup("Pool:GroundSegments");
         }
     }
 }
