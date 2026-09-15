@@ -7,12 +7,15 @@ namespace ZombieRace
     {
         [SerializeField] private EnemyController enemyPrefab;
         [SerializeField] private GroundSegment groundPrefab;
+        [SerializeField] private Projectile projectilePrefab;
 
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<GameStateMachine>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameResetHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameSession>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameEndHandler>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LevelProgress>().AsSingle();
 
             Container.Bind<CarController>().FromComponentInHierarchy().AsSingle();
 
@@ -24,6 +27,12 @@ namespace ZombieRace
                 .WithInitialSize(5)
                 .FromComponentInNewPrefab(groundPrefab)
                 .UnderTransformGroup("Pool:GroundSegments");
+            Container.BindMemoryPool<Projectile, ProjectilePool>()
+                .WithInitialSize(20)
+                .FromComponentInNewPrefab(projectilePrefab)
+                .UnderTransformGroup("Pool:Projectiles");
+
+            Container.Bind<IResetable>().To<ProjectilePool>().FromResolve();
         }
     }
 }

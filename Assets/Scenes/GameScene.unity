@@ -776,7 +776,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.GameInstaller
   enemyPrefab: {fileID: 8244249027732655063, guid: 102fc8e52c176b94dab5451f706debc6, type: 3}
-  groundPrefab: {fileID: 0}
+  groundPrefab: {fileID: 3341855471634959366, guid: 76742dcd0e26e164c99673dfe7448755, type: 3}
+  projectilePrefab: {fileID: 4180825533271644367, guid: f6d6572349efc9a4abc0d6c7a74a84d5, type: 3}
 --- !u!1 &590717526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1767,6 +1768,7 @@ GameObject:
   - component: {fileID: 4108973999082815471}
   - component: {fileID: 238800898688178675}
   - component: {fileID: 6081582518364195970}
+  - component: {fileID: 6278499066742982427}
   m_Layer: 0
   m_Name: Car Follow Camera
   m_TagString: Untagged
@@ -1794,7 +1796,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 5032804}
+    TrackingTarget: {fileID: 0}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -1861,6 +1863,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1805609988}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6278499066742982427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4024067275438352382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ebc06309a546714ebd0e13e38b92b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.CameraController
 --- !u!1001 &6993760291511790179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1912,6 +1926,14 @@ PrefabInstance:
     - target: {fileID: 6288397968713360344, guid: 29eb4b50a7ebc6d4e8d5c5426ed8e2d7, type: 3}
       propertyPath: m_Name
       value: Car
+      objectReference: {fileID: 0}
+    - target: {fileID: 7755126666342873986, guid: 29eb4b50a7ebc6d4e8d5c5426ed8e2d7, type: 3}
+      propertyPath: sensitivity
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7884172143561536576, guid: 29eb4b50a7ebc6d4e8d5c5426ed8e2d7, type: 3}
+      propertyPath: fireRate
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

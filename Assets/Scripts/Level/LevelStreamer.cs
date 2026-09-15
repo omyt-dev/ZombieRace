@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace ZombieRace
 {
-    public class LevelStreamer : MonoBehaviour
+    public class LevelStreamer : BaseBehaviour
     {
         [SerializeField] private float generationDistance = 200f;
         [SerializeField] private float despawnDistance = 20f;
@@ -98,6 +98,20 @@ namespace ZombieRace
                 this.enemyPool.Despawn(enemy);
 
             segment.ClearEnemies();
+        }
+
+        protected override void ResetBehaviour()
+        {
+            while (this.segments.Count > 0)
+            {
+                var segment = this.segments.Dequeue();
+
+                this.DespawnEnemies(segment);
+                this.groundPool.Despawn(segment);
+            }
+
+            this.nextSegmentPosition = 0f;
+            this.SpawnSegments();
         }
     }
 }

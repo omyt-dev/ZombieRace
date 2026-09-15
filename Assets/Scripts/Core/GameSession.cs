@@ -5,17 +5,19 @@ namespace ZombieRace
     public class GameSession : IDisposable
     {
         private readonly GameStateMachine stateMaching;
+        private readonly GameResetHandler resetHandler;
 
         public EGameState CurrentState => this.stateMaching.CurrentState;
 
-        public GameSession(GameStateMachine stateMaching)
+        public GameSession(GameStateMachine stateMaching, GameResetHandler resetHandler)
         {
             this.stateMaching = stateMaching;
-            this.stateMaching.StateChanged += OnStateChanged;
+            this.resetHandler = resetHandler;
+            //this.stateMaching.StateChanged += OnStateChanged;
         }
         public void Dispose()
         {
-            this.stateMaching.StateChanged -= OnStateChanged;
+            //this.stateMaching.StateChanged -= OnStateChanged;
         }
 
 
@@ -26,19 +28,19 @@ namespace ZombieRace
 
         public void FinishLevel(bool win)
         {
-            this.stateMaching.TryChangeState(
-                win ? EGameState.Win : EGameState.Lose);
+            this.stateMaching.TryChangeState(win ? EGameState.Win : EGameState.Lose);
         }
      
         public void RestartLevel()
         {
             this.stateMaching.TryChangeState(EGameState.Ready);
+            this.resetHandler.Reset();
         }
 
 
-        private void OnStateChanged(EGameState previousState, EGameState newState)
-        {
-        }
+        //private void OnStateChanged(EGameState previousState, EGameState newState)
+        //{
+        //}
 
     }
 }

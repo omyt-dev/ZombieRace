@@ -18,11 +18,19 @@ namespace ZombieRace
         public void AddEnemy(EnemyController enemy)
         { 
             this.enemies.Add(enemy);
+            enemy.Died += this.OnEnemyDied;
         }
 
         public void ClearEnemies()
         {
+            this.enemies.ForEach(x => x.Died -= this.OnEnemyDied);
             this.enemies.Clear();
+        }
+
+        private void OnEnemyDied(EnemyController enemy)
+        {
+            enemy.Died -= this.OnEnemyDied;
+            this.enemies.Remove(enemy);
         }
     }
 }

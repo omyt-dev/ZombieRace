@@ -4,13 +4,15 @@ using Zenject;
 
 namespace ZombieRace
 {
-    public class EnemyController : EventBehaviour
+    public class EnemyController : BaseBehaviour
     {
         [SerializeField] private float detectionRange = 10f;
-        [SerializeField] private float attackDistance = 2f;
+        [SerializeField] private float attackDistance = 1.5f;
         [SerializeField] private float moveSpeed = 3f;
         [SerializeField] private float acceleration = 3f;
         [SerializeField] private float attackDamage = 10f;
+
+        public event Action<EnemyController> Died;
 
         private CarController carController;
         private Health carHealth;
@@ -92,12 +94,6 @@ namespace ZombieRace
             }
         }
 
-
-        private void OnDied()
-        {
-            this.stateMachine.TryChangeState(EEnemyState.Dead);
-        }
-
         private void EnterIdle() { this.CurrentSpeed = 0f; }
         private void UpdateIdle()
         {
@@ -129,15 +125,24 @@ namespace ZombieRace
 
         private void EnterAttack()
         {
-            this.CurrentSpeed = 0f;
             this.carHealth.TakeDamage(this.attackDamage);
             this.stateMachine.TryChangeState(EEnemyState.Dead);
         }
 
+        private void OnDied()
+        {
+            this.stateMachine.TryChangeState(EEnemyState.Dead);
+        }
         private void EnterDead()
         {
+            this.Died?.Invoke(this);
+        }
+
+        public void ResetEnemy()
+        {
+            this.enemyHealth.ResetHealth();
+            this.stateMachine.Reset();
             this.CurrentSpeed = 0f;
-            this.gameObject.SetActive(false);
         }
     }
 }

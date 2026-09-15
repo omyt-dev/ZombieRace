@@ -18,6 +18,11 @@ namespace ZombieRace
 
             this.StateChanged?.Invoke(previousState, newState);
             return true;
-        }   
+        }
+
+        public void Reset()
+        {
+            this.CurrentState = EEnemyState.Idle;
+        }
     }
 }

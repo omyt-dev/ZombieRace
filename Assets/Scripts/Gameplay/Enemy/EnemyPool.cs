@@ -15,12 +15,20 @@ namespace ZombieRace
         protected override void OnSpawned(EnemyController item)
         {
             base.OnSpawned(item);
+
+            item.Died += this.OnEnemyDied;
+            item.ResetEnemy();
         }
 
         protected override void OnDespawned(EnemyController item)
         {
+            item.Died -= this.OnEnemyDied;
             base.OnDespawned(item);
         }
 
+        private void OnEnemyDied(EnemyController enemy)
+        {
+            this.Despawn(enemy);
+        }
     }
 }

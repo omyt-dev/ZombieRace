@@ -4,24 +4,17 @@ using Zenject;
 
 namespace ZombieRace
 {
-    public class CarController : EventBehaviour
+    public class CarController : BaseBehaviour
     {
-        private GameStateMachine gameStateMachine;
         private CarMovement movement;
         private Health health;
 
         public event Action Died;
 
-        [Inject]
-        private void Construct(GameStateMachine gameStateMachine)
+        private void Awake()
         {
-            this.gameStateMachine = gameStateMachine;
             this.movement = GetComponent<CarMovement>();
             this.health = GetComponent<Health>();
-
-            this.SubscribeEvent(
-                () => this.gameStateMachine.StateChanged += OnGameStateChanged, 
-                () => this.gameStateMachine.StateChanged -= OnGameStateChanged);
 
             this.SubscribeEvent(
                 () => this.health.Died += OnDied, 
@@ -34,17 +27,21 @@ namespace ZombieRace
             this.Died?.Invoke();
         }
 
-        private void OnGameStateChanged(EGameState previousState, EGameState newState)
+        protected override void ResetBehaviour()
         {
-            switch (newState)
-            {
-                case EGameState.Playing:
-                    this.movement.StartMoving();
-                    break;
-                default:
-                    this.movement.StopMoving();
-                    break;
-            }
+            this.transform.position = Vector3.zero;
+            this.health.ResetHealth();
+            this.movement.StopMoving();
+        }
+
+        protected override void EnterPlaying()
+        {
+            this.movement.StartMoving();
+        }
+
+        protected override void ExitPlaying()
+        {
+            this.movement.StopMoving();
         }
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3322307810570733766}
   - component: {fileID: 5360925641512172575}
   m_Layer: 0
-  m_Name: Zombie
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,13 +197,44 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -867652005158692576, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2054277262880140997}
   m_SourcePrefab: {fileID: 100100000, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
 --- !u!95 &1343432053254588601 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
   m_PrefabInstance: {fileID: 4885915197704615208}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3475436294715337736 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -867652005158692576, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
+  m_PrefabInstance: {fileID: 4885915197704615208}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &2054277262880140997
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475436294715337736}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.62
+  m_Height: 2.5128694
+  m_Direction: 1
+  m_Center: {x: -0.0022522537, y: 1.0821083, z: 0.05998944}
 --- !u!4 &4919329926724768451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
