@@ -9,10 +9,10 @@ namespace ZombieRace
         private readonly CarController carController;
 
         public float Distance { get; private set; }
-        public float LevelLenght { get; }
+        public float LevelLength { get; }
 
-        public float Progress => Mathf.Clamp01(this.LevelLenght > 0f ? this.Distance / this.LevelLenght : 0f);
-        public bool IsCompleted => this.Distance >= this.LevelLenght;
+        public float Progress => Mathf.Clamp01(this.LevelLength > 0f ? this.Distance / this.LevelLength : 0f);
+        public bool IsCompleted => this.Distance >= this.LevelLength;
 
         public event Action<float> ProgressChanged;
         public event Action Completed;
@@ -20,7 +20,7 @@ namespace ZombieRace
         public LevelProgress(CarController carController)
         {
             this.carController = carController;
-            this.LevelLenght = 500f;
+            this.LevelLength = 20f;
         }
 
         public void Tick()
@@ -33,7 +33,7 @@ namespace ZombieRace
             this.Distance = distance;
             this.ProgressChanged?.Invoke(this.Progress);
 
-            StylizedLog.Log("LevelProgress", $"{Distance}/{LevelLenght}", StylizedLog.Orange);
+            StylizedLog.Log("LevelProgress", $"{Distance}/{LevelLength}", StylizedLog.Orange);
 
             if (this.IsCompleted)
                 this.Completed?.Invoke();

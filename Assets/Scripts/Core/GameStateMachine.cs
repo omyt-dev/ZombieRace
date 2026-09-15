@@ -12,7 +12,7 @@ namespace ZombieRace
 
         public void Initialize()
         {
-            this.CurrentState = EGameState.Ready;
+            this.TryChangeState(EGameState.Ready);
         }
 
         public bool TryChangeState(EGameState newState)
@@ -36,7 +36,7 @@ namespace ZombieRace
         {
             return currentState switch
             {
-               // GameState.None => newState == GameState.Ready,
+                EGameState.None => newState == EGameState.Ready,
                 EGameState.Ready => newState == EGameState.Playing,
                 EGameState.Playing => newState == EGameState.Win || newState == EGameState.Lose,
                 EGameState.Win => newState == EGameState.Ready,

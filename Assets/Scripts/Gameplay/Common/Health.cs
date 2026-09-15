@@ -40,6 +40,7 @@ namespace ZombieRace
         public void ResetHealth()
         {
             this.CurrentHealth = this.MaxHealth;
+            this.HealthChanged?.Invoke(CurrentHealth, MaxHealth);
         }
     }
 }
