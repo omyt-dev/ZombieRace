@@ -8,6 +8,7 @@ namespace ZombieRace
         [SerializeField] private EnemyController enemyPrefab;
         [SerializeField] private GroundSegment groundPrefab;
         [SerializeField] private Projectile projectilePrefab;
+        [SerializeField] private LevelConfig levelConfig;
 
         public override void InstallBindings()
         {
@@ -18,6 +19,7 @@ namespace ZombieRace
             Container.BindInterfacesAndSelfTo<LevelProgress>().AsSingle();
 
             Container.Bind<CarController>().FromComponentInHierarchy().AsSingle();
+            Container.BindInstance(this.levelConfig);
 
             Container.BindMemoryPool<EnemyController, EnemyPool>()
                 .WithInitialSize(10)

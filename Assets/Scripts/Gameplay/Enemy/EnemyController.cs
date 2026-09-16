@@ -6,11 +6,7 @@ namespace ZombieRace
 {
     public class EnemyController : BaseBehaviour
     {
-        [SerializeField] private float detectionRange = 10f;
-        [SerializeField] private float attackDistance = 1.5f;
-        [SerializeField] private float moveSpeed = 3f;
-        [SerializeField] private float acceleration = 3f;
-        [SerializeField] private float attackDamage = 10f;
+        [SerializeField] private EnemyConfig config;
 
         public event Action<EnemyController> Died;
 
@@ -30,8 +26,8 @@ namespace ZombieRace
             {
                 this.currentSpeed = value;
 
-                float normalizedSpeed = this.moveSpeed > 0f
-                    ? this.currentSpeed / this.moveSpeed
+                float normalizedSpeed = this.config.MoveSpeed > 0f
+                    ? this.currentSpeed / this.config.MoveSpeed
                     : 0f;
                 this.enemyAnimator.SetNormalizedSpeed(normalizedSpeed);
             }
@@ -41,8 +37,10 @@ namespace ZombieRace
         private void Construct(CarController carController)
         {
             this.enemyAnimator = this.GetComponent<EnemyAnimatorController>();
-            this.enemyHealth = this.GetComponent<Health>();
             this.stateMachine = new EnemyStateMachine();
+
+            this.enemyHealth = this.GetComponent<Health>();
+            this.enemyHealth.Initialize(config.MaxHealth);
 
             this.carController = carController;
             this.carHealth = carController.GetComponent<Health>();
@@ -58,8 +56,6 @@ namespace ZombieRace
 
         private void OnStateChanged(EEnemyState previousState, EEnemyState newState)
         {
-            StylizedLog.Log(this.gameObject.name + ":EnemyState", $"{previousState} -> {newState}", StylizedLog.Purple);
-
             switch (newState)
             {
                 case EEnemyState.Idle:
@@ -98,7 +94,7 @@ namespace ZombieRace
         private void UpdateIdle()
         {
             float distance = Vector3.Distance(this.transform.position, this.carController.transform.position);
-            if (distance <= this.detectionRange)
+            if (distance <= this.config.DetectionRange)
                 this.stateMachine.TryChangeState(EEnemyState.Chase);
         }
 
@@ -107,25 +103,29 @@ namespace ZombieRace
         }
         private void UpdateChase()
         {
-            Vector3 direction = this.carController.transform.position - this.transform.position;
-            direction.y = 0f;
+            Vector3 direction = (this.carController.transform.position - this.transform.position).FlatY();
 
             float distance = direction.magnitude;
-            if (distance <= this.attackDistance)
+            if (distance <= this.config.AttackDistance)
             {
                 this.stateMachine.TryChangeState(EEnemyState.Attack);
                 return;
             }
 
+            if (direction.sqrMagnitude > 0.001f)
+            { 
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, this.config.TurnSpeed * Time.deltaTime);
+            }
+
             direction.Normalize();
-            this.CurrentSpeed = Mathf.MoveTowards(this.CurrentSpeed, this.moveSpeed, this.acceleration * Time.deltaTime);
+            this.CurrentSpeed = Mathf.MoveTowards(this.CurrentSpeed, this.config.MoveSpeed, this.config.Acceleration * Time.deltaTime);
             this.transform.position += direction * (this.CurrentSpeed * Time.deltaTime);
-            this.transform.rotation = Quaternion.LookRotation(direction);
         }
 
         private void EnterAttack()
         {
-            this.carHealth.TakeDamage(this.attackDamage);
+            this.carHealth.TakeDamage(this.config.AttackDamage);
             this.stateMachine.TryChangeState(EEnemyState.Dead);
         }
 
@@ -140,6 +140,7 @@ namespace ZombieRace
 
         public void ResetEnemy()
         {
+            this.enemyAnimator.SetRandomIdle();
             this.enemyHealth.ResetHealth();
             this.stateMachine.Reset();
             this.CurrentSpeed = 0f;

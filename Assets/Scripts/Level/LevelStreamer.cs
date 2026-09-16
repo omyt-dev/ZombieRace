@@ -8,9 +8,7 @@ namespace ZombieRace
 {
     public class LevelStreamer : BaseBehaviour
     {
-        [SerializeField] private float generationDistance = 200f;
-        [SerializeField] private float despawnDistance = 20f;
-        [SerializeField] private float enemiesPerSegment = 4f;
+        private LevelConfig config;
 
         private float nextSegmentPosition;
 
@@ -21,11 +19,12 @@ namespace ZombieRace
         private EnemyPool enemyPool;
 
         [Inject]
-        private void Construct(CarController car, GroundPool groundPool, EnemyPool enemyPool)
+        private void Construct(CarController car, GroundPool groundPool, EnemyPool enemyPool, LevelConfig config)
         {
             this.carController = car;
             this.groundPool = groundPool;
             this.enemyPool = enemyPool;
+            this.config = config;
         }
 
         private void Update()
@@ -36,7 +35,7 @@ namespace ZombieRace
 
         private void SpawnSegments()
         {
-            float spawnThreshold = this.carController.transform.position.z + this.generationDistance;
+            float spawnThreshold = this.carController.transform.position.z + this.config.GenerationDistance;
 
             while (this.nextSegmentPosition < spawnThreshold)
                 this.SpawnSegment();
@@ -56,12 +55,13 @@ namespace ZombieRace
 
         private void SpawnEnemies(GroundSegment segment)
         {
-            for (int i = 0; i < this.enemiesPerSegment; i++)
+            for (int i = 0; i < this.config.EnemiesPerSegment; i++)
             {
                 EnemyController enemy = this.enemyPool.Spawn();
 
                 Vector3 position = this.GetRandomEnemyPosition(segment);
                 enemy.transform.position = position;
+                enemy.transform.rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
                 segment.AddEnemy(enemy);
             }
         }
@@ -78,7 +78,7 @@ namespace ZombieRace
 
         private void DespawnSegments()
         {
-            float despawnThreshold = this.carController.transform.position.z - this.despawnDistance;
+            float despawnThreshold = this.carController.transform.position.z - this.config.DespawnDistance;
 
             while (this.segments.Count > 0)
             {

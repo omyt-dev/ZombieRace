@@ -1,4 +1,6 @@
-﻿namespace ZombieRace
+﻿using UnityEngine;
+
+namespace ZombieRace
 {
     public class UIHealthBarPresenter : BaseBehaviour
     {

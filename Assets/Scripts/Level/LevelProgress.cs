@@ -6,10 +6,11 @@ namespace ZombieRace
 {
     public class LevelProgress : ITickable, IResetable
     {
-        private readonly CarController carController;
+        private CarController carController;
+        private LevelConfig config;
 
         public float Distance { get; private set; }
-        public float LevelLength { get; }
+        public float LevelLength => config.Length;
 
         public float Progress => Mathf.Clamp01(this.LevelLength > 0f ? this.Distance / this.LevelLength : 0f);
         public bool IsCompleted => this.Distance >= this.LevelLength;
@@ -17,10 +18,10 @@ namespace ZombieRace
         public event Action<float> ProgressChanged;
         public event Action Completed;
 
-        public LevelProgress(CarController carController)
+        public LevelProgress(CarController carController, LevelConfig config)
         {
             this.carController = carController;
-            this.LevelLength = 20f;
+            this.config = config;
         }
 
         public void Tick()
@@ -32,8 +33,6 @@ namespace ZombieRace
 
             this.Distance = distance;
             this.ProgressChanged?.Invoke(this.Progress);
-
-            StylizedLog.Log("LevelProgress", $"{Distance}/{LevelLength}", StylizedLog.Orange);
 
             if (this.IsCompleted)
                 this.Completed?.Invoke();

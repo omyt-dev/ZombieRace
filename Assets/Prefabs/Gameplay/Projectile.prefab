@@ -46,9 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5324dfec1db5c3e41bca15855002f740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.Projectile
-  speed: 35
-  damage: 25
-  lifetime: 6
+  config: {fileID: 11400000, guid: df8bd6b6083dd154883aefe2d40d7c15, type: 2}
 --- !u!54 &-39285700245711927
 Rigidbody:
   m_ObjectHideFlags: 0

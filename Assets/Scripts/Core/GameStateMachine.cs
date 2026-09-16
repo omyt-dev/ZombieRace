@@ -26,8 +26,6 @@ namespace ZombieRace
             EGameState previousState = this.CurrentState;
             this.CurrentState = newState;
 
-            StylizedLog.Log("GameState", $"{previousState} -> {newState}", StylizedLog.Blue);
-
             this.StateChanged?.Invoke(previousState, newState);
             return true;
         }

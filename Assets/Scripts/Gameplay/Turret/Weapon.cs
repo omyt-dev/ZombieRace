@@ -7,15 +7,20 @@ namespace ZombieRace
     public class Weapon : MonoBehaviour
     {
         [SerializeField] private Transform muzzle;
-        [SerializeField] private float fireRate = 5f;
 
         private ProjectilePool projectilePool;
+        private float fireRate = 5f;
         private float nextFireTime;
 
         [Inject]
         private void Construct(ProjectilePool projectilePool)
         {
             this.projectilePool = projectilePool;
+        }
+
+        public void Initialize(float fireRate)
+        {
+            this.fireRate = fireRate;
         }
 
         public bool TryFire()

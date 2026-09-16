@@ -346,9 +346,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.TurretAim
   turretPivot: {fileID: 4095935614699913577}
-  rotationSpeed: 360
-  minAngle: -60
-  maxAngle: 60
 --- !u!114 &-3440055532682483233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,6 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f355ca4756240124cbd280eebed9e679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.TurretController
+  config: {fileID: 11400000, guid: 9fa956d1b7b074649a094f700748e536, type: 2}
 --- !u!114 &4348668887488225011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,7 +371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a9dad1bfd031b4fb91a5d9a523ea87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.TurretInput
-  sensitivity: 1
 --- !u!114 &4227781670566236465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,4 +384,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.Weapon
   muzzle: {fileID: 30408063950783624}
-  fireRate: 5

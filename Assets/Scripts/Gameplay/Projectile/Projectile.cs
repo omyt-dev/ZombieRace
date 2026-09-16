@@ -5,9 +5,7 @@ namespace ZombieRace
 {
     public class Projectile : MonoBehaviour
     {
-        [SerializeField] private float speed = 20f;
-        [SerializeField] private float damage = 25f;
-        [SerializeField] private float lifetime = 3f;
+        [SerializeField] private ProjectileConfig config;
 
         private float timeAlive;
 
@@ -22,10 +20,10 @@ namespace ZombieRace
 
         private void Update()
         {
-            this.transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            this.transform.Translate(Vector3.forward * this.config.Speed * Time.deltaTime);
             this.timeAlive += Time.deltaTime;
 
-            if (this.timeAlive >= this.lifetime)
+            if (this.timeAlive >= this.config.Lifetime)
                 this.Expired?.Invoke(this);
         }
 
@@ -36,7 +34,7 @@ namespace ZombieRace
             if (health == null)
                 return;
 
-            health.TakeDamage(this.damage);
+            health.TakeDamage(this.config.Damage);
             this.Expired?.Invoke(this);
         }
     }

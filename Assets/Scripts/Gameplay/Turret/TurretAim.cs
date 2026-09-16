@@ -6,9 +6,17 @@ namespace ZombieRace
     public class TurretAim : MonoBehaviour
     {
         [SerializeField] private Transform turretPivot;
-        [SerializeField] private float rotationSpeed;
-        [SerializeField] private float minAngle;
-        [SerializeField] private float maxAngle;
+
+        private float rotationSpeed;
+        private float minAngle;
+        private float maxAngle;
+
+        public void Initialize(float rotationSpeed, float minAngle, float maxAngle)
+        {
+            this.rotationSpeed = rotationSpeed;
+            this.minAngle = minAngle;
+            this.maxAngle = maxAngle;
+        }
 
         public float AimAt(Vector3 target)
         {
@@ -32,5 +40,6 @@ namespace ZombieRace
         {
             this.turretPivot.localRotation = Quaternion.Euler(0, 0, 0);
         }
+
     }
 }

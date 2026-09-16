@@ -6,6 +6,8 @@ namespace ZombieRace
 {
     public class CarController : BaseBehaviour
     {
+        [SerializeField] private CarConfig config;
+
         private CarMovement movement;
         private Health health;
 
@@ -15,6 +17,10 @@ namespace ZombieRace
         {
             this.movement = GetComponent<CarMovement>();
             this.health = GetComponent<Health>();
+
+            this.movement.Initialize(this.config.Speed, this.config.AngleCurve, this.config.AngleMax,
+                this.config.SegmentDistanceMin, this.config.SegmentDistanceMax);
+            this.health.Initialize(this.config.MaxHealth);
 
             this.SubscribeEvent(
                 () => this.health.Died += OnDied, 

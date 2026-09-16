@@ -1,7 +1,11 @@
-﻿namespace ZombieRace
+﻿using UnityEngine;
+
+namespace ZombieRace
 {
     public class TurretController : BaseBehaviour
     {
+        [SerializeField] TurretConfig config;
+
         private TurretInput input;
         private TurretAim aim;
         private Weapon weapon;
@@ -13,6 +17,10 @@
             this.input = this.GetComponent<TurretInput>();
             this.aim = this.GetComponent<TurretAim>();
             this.weapon = this.GetComponent<Weapon>();
+
+            this.input.SetSensetivity(config.Sensitivity);
+            this.aim.Initialize(config.RotationSpeed, config.MinAngle, config.MaxAngle);
+            this.weapon.Initialize(config.FireRate);
         }
 
         private void Update()

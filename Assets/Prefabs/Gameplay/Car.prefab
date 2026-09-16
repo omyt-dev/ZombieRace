@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 5910698257445638894}
   - component: {fileID: 5373298917885225747}
   - component: {fileID: 8233396236732320965}
+  - component: {fileID: 414764123765873956}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -318,6 +319,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &414764123765873956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5326677345681060256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5812ae8c9b3a94ab3aac7ede793f7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.UIWorldSpaceCanvas
 --- !u!1 &6288397968713360344
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7a4d182306b744196e811f24863c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.CarController
+  config: {fileID: 11400000, guid: 09bb5eceeb391da4187a468153bef63d, type: 2}
 --- !u!114 &7772175200457886692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 166614557bf5b4547a143198c8c24081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.CarMovement
-  speed: 5
 --- !u!114 &4361004399241756143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,7 +405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0339a4cc15ef346975ed53814ca65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.Health
-  <MaxHealth>k__BackingField: 100
 --- !u!1 &7599139841035589408
 GameObject:
   m_ObjectHideFlags: 0

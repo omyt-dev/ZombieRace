@@ -1,11 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace ZombieRace
 {
     public class TurretInput : MonoBehaviour
     {
-        [SerializeField] private float sensitivity = 1f;
+        private float sensitivity = 1f;
+
+        public void SetSensetivity(float sensitivity)
+        {
+            this.sensitivity = sensitivity;
+        }
 
         public float GetInputDelta()
         {

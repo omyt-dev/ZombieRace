@@ -163,11 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9d66165a0802e45adcc4da90ccd003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.EnemyController
-  detectionRange: 15
-  attackDistance: 2
-  moveSpeed: 3
-  acceleration: 3
-  attackDamage: 25
+  config: {fileID: 11400000, guid: 0873764fc2b3cbc4788cd46d59564b04, type: 2}
 --- !u!114 &3322307810570733766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0339a4cc15ef346975ed53814ca65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.Health
-  <MaxHealth>k__BackingField: 100
 --- !u!114 &5360925641512172575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.EnemyAnimatorController
   animator: {fileID: 1343432053254588601}
+  idleCount: 7
+  idleValueRound: 0
 --- !u!1 &3327974810935393523
 GameObject:
   m_ObjectHideFlags: 0
