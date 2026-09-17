@@ -104,6 +104,10 @@ This keeps gameplay components from depending directly on UI or unrelated system
 
 For Android, build the project as an APK from Unity's Android build settings.
 
+## Download
+
+[Download Android APK](../../releases/latest)
+
 ## Gameplay Video
 
 [Watch gameplay video](https://drive.google.com/file/d/1Mxp2u3eH9LFAynhgeE1vHa3RGl6h_CAn/view?usp=sharing)
