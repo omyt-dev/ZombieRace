@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace ZombieRace
 {
@@ -13,6 +14,8 @@ namespace ZombieRace
         {
             this.stateMaching = stateMaching;
             this.resetHandler = resetHandler;
+
+            Application.targetFrameRate = 60;
             //this.stateMaching.StateChanged += OnStateChanged;
         }
         public void Dispose()
