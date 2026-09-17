@@ -360,6 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f355ca4756240124cbd280eebed9e679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.TurretController
+  visual: {fileID: 1085160231386509850}
   config: {fileID: 11400000, guid: 9fa956d1b7b074649a094f700748e536, type: 2}
 --- !u!114 &4348668887488225011
 MonoBehaviour:

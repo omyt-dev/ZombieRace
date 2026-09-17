@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bbc30bbb1dd23b48aae9e9053aa1ebc, type: 3}
   m_Name: EnemyConfig
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.EnemyConfig
-  <MaxHealth>k__BackingField: 100000
+  <MaxHealth>k__BackingField: 100
   <MoveSpeed>k__BackingField: 4
   <TurnSpeed>k__BackingField: 180
   <Acceleration>k__BackingField: 2

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EasyLevel
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.LevelConfig
   <Length>k__BackingField: 300
+  <EnemiesPerSegment>k__BackingField: 15
   <GenerationDistance>k__BackingField: 300
   <DespawnDistance>k__BackingField: 20
-  <EnemiesPerSegment>k__BackingField: 15

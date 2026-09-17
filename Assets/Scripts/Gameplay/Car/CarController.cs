@@ -9,7 +9,7 @@ namespace ZombieRace
 {
     public class CarController : BaseBehaviour
     {
-        [SerializeField] private GameObject visual;
+        [SerializeField] private GameObject[] visuals;
         [SerializeField] private List<TrailRenderer> trails;
         [SerializeField] private CarConfig config;
         
@@ -55,9 +55,15 @@ namespace ZombieRace
         {
             this.movement.StopMoving();
             this.effectFactory.Play(EEffectType.CarExplosion, this.transform.position + Vector3.up);
-            this.visual.SetActive(false);
+            this.SetVisual(false);
 
             this.StartCoroutine(this.DeathSequence());
+        }
+
+        private void SetVisual(bool enabled)
+        {
+            foreach (var visual in visuals)
+                visual.SetActive(enabled);
         }
 
         private IEnumerator DeathSequence()
@@ -80,8 +86,8 @@ namespace ZombieRace
             this.health.ResetHealth();
             this.movement.StopMoving();
             this.hitReaction.ResetReaction();
-            this.hitFlash.ResetFlash(); 
-            this.visual.SetActive(true);
+            this.hitFlash.ResetFlash();
+            this.SetVisual(true);
         }
 
         protected override void EnterPlaying()

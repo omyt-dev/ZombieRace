@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe775a989ba10549aaab0f760241159, type: 3}
   m_Name: CarConfig
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.CarConfig
-  <MaxHealth>k__BackingField: 30
-  <Speed>k__BackingField: 0
+  <MaxHealth>k__BackingField: 100
+  <Speed>k__BackingField: 10
+  <DeathDelay>k__BackingField: 1.5
   <AngleCurve>k__BackingField:
     serializedVersion: 2
     m_Curve:
@@ -56,6 +57,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  <AngleMax>k__BackingField: 4
+  <AngleMax>k__BackingField: 3
   <SegmentDistanceMax>k__BackingField: 300
-  <SegmentDistanceMin>k__BackingField: 100
+  <SegmentDistanceMin>k__BackingField: 150

@@ -14,8 +14,10 @@ namespace ZombieRace
 
             this.SubscribeEvent(() => this.health.HealthChanged += OnHealthChanged, () => this.health.HealthChanged -= OnHealthChanged);
         }
-        private void Start()
+       
+        protected override void OnEnable()
         {
+            base.OnEnable();
             this.view.SetValue(this.health.CurrentHealth, this.health.MaxHealth);
         }
 

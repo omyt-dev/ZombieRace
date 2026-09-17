@@ -151,7 +151,7 @@ namespace ZombieRace
 
             direction.Normalize();
 
-            float targetSpeed = this.carHealth.CurrentHealth == 0 ? 0 : this.config.MoveSpeed;
+            float targetSpeed = this.carHealth.CurrentHealth == 0 || !this.IsPlaying ? 0 : this.config.MoveSpeed;
             this.CurrentSpeed = Mathf.MoveTowards(this.CurrentSpeed, targetSpeed, this.config.Acceleration * Time.deltaTime);
             this.transform.position += direction * (this.CurrentSpeed * Time.deltaTime);
         }

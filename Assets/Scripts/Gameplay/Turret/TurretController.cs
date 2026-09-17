@@ -4,7 +4,8 @@ namespace ZombieRace
 {
     public class TurretController : BaseBehaviour
     {
-        [SerializeField] TurretConfig config;
+        [SerializeField] private GameObject visual;
+        [SerializeField] private TurretConfig config;
 
         private TurretInput input;
         private TurretAim aim;
@@ -25,7 +26,7 @@ namespace ZombieRace
 
         private void Update()
         {
-            if (!this.IsPlaying) 
+            if (!this.IsPlaying || !visual.activeSelf) 
                 return;
 
             this.angle += this.input.GetInputDelta();

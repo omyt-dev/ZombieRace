@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5ff987530923a439d511f94d311a9d, type: 3}
   m_Name: HardLevel
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.LevelConfig
-  <Length>k__BackingField: 600
-  <EnemiesPerSegment>k__BackingField: 15
+  <Length>k__BackingField: 500
+  <EnemiesPerSegment>k__BackingField: 20
   <GenerationDistance>k__BackingField: 300
   <DespawnDistance>k__BackingField: 20

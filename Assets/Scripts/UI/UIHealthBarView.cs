@@ -7,17 +7,11 @@ namespace ZombieRace
 {
     public class UIHealthBarView : MonoBehaviour
     {
+        [SerializeField] private CanvasGroup group;
         [SerializeField] private Image healthFill;
         [SerializeField] private Image damageFill;
         [SerializeField] private bool hideIfFullHp = false;
         [SerializeField] private float duration = .5f;
-
-        private CanvasGroup group;
-
-        protected void Awake()
-        {
-            this.group = this.GetOrAddComponent<CanvasGroup>();
-        }
 
         public void SetValue(float current, float max)
         {

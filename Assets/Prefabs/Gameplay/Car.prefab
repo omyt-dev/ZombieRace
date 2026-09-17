@@ -121,40 +121,6 @@ Transform:
   m_Children:
   - {fileID: 8348986422673074273}
   - {fileID: 7092233904146716123}
-  m_Father: {fileID: 5484189667420859550}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4002192067499296808
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5484189667420859550}
-  m_Layer: 0
-  m_Name: Visual
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5484189667420859550
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4002192067499296808}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3934424721653787151}
-  - {fileID: 7156127937223344360}
-  - {fileID: 8741861011235342725}
   m_Father: {fileID: 933515041079163124}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4564855781014885373
@@ -284,7 +250,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6785200667436929706}
-  m_Father: {fileID: 5484189667420859550}
+  m_Father: {fileID: 933515041079163124}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -400,7 +366,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5484189667420859550}
+  - {fileID: 3934424721653787151}
+  - {fileID: 7156127937223344360}
+  - {fileID: 8741861011235342725}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4413619781323683287
@@ -415,7 +383,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7a4d182306b744196e811f24863c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.CarController
-  visual: {fileID: 4002192067499296808}
+  visuals:
+  - {fileID: 1166526477598083099}
+  - {fileID: 6397766475484862315}
+  - {fileID: 5326677345681060256}
   trails:
   - {fileID: 7437457024768468264}
   - {fileID: 93633665395993634}
@@ -1054,7 +1025,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 5484189667420859550}
+    m_TransformParent: {fileID: 933515041079163124}
     m_Modifications:
     - target: {fileID: 3785699610437330329, guid: f6cd5070875306c469414150348e3e2d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1116,6 +1087,11 @@ PrefabInstance:
 --- !u!23 &3872268091178678271 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 7096303697080685198, guid: f6cd5070875306c469414150348e3e2d, type: 3}
+  m_PrefabInstance: {fileID: 6324793086438401393}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6397766475484862315 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1085160231386509850, guid: f6cd5070875306c469414150348e3e2d, type: 3}
   m_PrefabInstance: {fileID: 6324793086438401393}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &7156127937223344360 stripped

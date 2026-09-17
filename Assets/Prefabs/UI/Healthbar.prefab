@@ -269,6 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a3e089750838c468df386d5b69b877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.UIHealthbarView
+  group: {fileID: 494089057534819465}
   healthFill: {fileID: 2698051495323111610}
   damageFill: {fileID: 3050797062871309930}
   hideIfFullHp: 0
