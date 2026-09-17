@@ -115,6 +115,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5812ae8c9b3a94ab3aac7ede793f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.UIWorldSpaceCanvas
+--- !u!1 &1863732302261021790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7827328638203716915}
+  - component: {fileID: 98241917851481308}
+  - component: {fileID: 3140174267067675591}
+  m_Layer: 0
+  m_Name: HitReactionRig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7827328638203716915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863732302261021790}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4919329926724768451}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &98241917851481308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863732302261021790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Animation.Rigging::UnityEngine.Animations.Rigging.Rig
+  m_Weight: 1
+  m_Effectors: []
+--- !u!114 &3140174267067675591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863732302261021790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf219326d2292de48a0c671da18d402b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Animation.Rigging::UnityEngine.Animations.Rigging.OverrideTransform
+  m_Weight: 1
+  m_Data:
+    m_ConstrainedObject: {fileID: 6008347162964481324}
+    m_OverrideSource: {fileID: 0}
+    m_OverridePosition: {x: 0, y: 0, z: 0}
+    m_OverrideRotation: {x: 0, y: 0, z: 0}
+    m_PositionWeight: 1
+    m_RotationWeight: 1
+    m_Space: 2
 --- !u!1 &1963403061471546615
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,6 +195,8 @@ GameObject:
   - component: {fileID: 8244249027732655063}
   - component: {fileID: 3322307810570733766}
   - component: {fileID: 5360925641512172575}
+  - component: {fileID: 5738235496640332276}
+  - component: {fileID: -916878264872367692}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -191,6 +261,36 @@ MonoBehaviour:
   animator: {fileID: 1343432053254588601}
   idleCount: 7
   idleValueRound: 0
+--- !u!114 &5738235496640332276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963403061471546615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93bc4fa414153364baf983f26e9be0e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.EnemyHitReaction
+  overrideTransform: {fileID: 3140174267067675591}
+--- !u!114 &-916878264872367692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963403061471546615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09fcdac6dfa5f2d49a499544994b8d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.HitFlash
+  renderers:
+  - {fileID: 2785429664388174234}
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  intensity: 0.6
+  duration: 0.08
 --- !u!1 &3327974810935393523
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2280865929574551951}
   m_Layer: 0
-  m_Name: Model
+  m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -307,17 +407,54 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.54176253
       objectReference: {fileID: 0}
+    - target: {fileID: 7307535121243759794, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6803e3ffb627a08479a61772fb54c7da, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7827328638203716915}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7644228427429858442}
+    - targetCorrespondingSourceObject: {fileID: -3542885339558904099, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7993428338006645338}
     - targetCorrespondingSourceObject: {fileID: -867652005158692576, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2054277262880140997}
   m_SourcePrefab: {fileID: 100100000, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
+--- !u!1 &944460085797276661 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3542885339558904099, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
+  m_PrefabInstance: {fileID: 4885915197704615208}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7993428338006645338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944460085797276661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Animation.Rigging::UnityEngine.Animations.Rigging.Rig
+  m_Weight: 1
+  m_Effectors: []
 --- !u!95 &1343432053254588601 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
+  m_PrefabInstance: {fileID: 4885915197704615208}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &2785429664388174234 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7307535121243759794, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
   m_PrefabInstance: {fileID: 4885915197704615208}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &3475436294715337736 stripped
@@ -351,6 +488,32 @@ CapsuleCollider:
 --- !u!4 &4919329926724768451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
+  m_PrefabInstance: {fileID: 4885915197704615208}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5696816230435948665 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
+  m_PrefabInstance: {fileID: 4885915197704615208}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7644228427429858442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5696816230435948665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Animation.Rigging::UnityEngine.Animations.Rigging.RigBuilder
+  m_RigLayers:
+  - m_Rig: {fileID: 98241917851481308}
+    m_Active: 1
+  m_Effectors: []
+--- !u!4 &6008347162964481324 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8021001004253913084, guid: c4d78aa3354858e47a6b3e3d4fa5a74a, type: 3}
   m_PrefabInstance: {fileID: 4885915197704615208}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5112898224613987964

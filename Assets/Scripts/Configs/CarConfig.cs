@@ -7,6 +7,7 @@ namespace ZombieRace
     {
         [field: SerializeField] public float MaxHealth { get; private set; } = 100f;
         [field: SerializeField] public float Speed { get; private set; } = 5f;
+        [field: SerializeField] public float DeathDelay { get; private set; } = 1f;
 
         [field: Header("Movement Randomization")]
         [field: SerializeField] public AnimationCurve AngleCurve { get; private set; }

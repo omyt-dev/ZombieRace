@@ -5,7 +5,8 @@ namespace ZombieRace
 {
     public class Projectile : MonoBehaviour
     {
-        [SerializeField] private ProjectileConfig config;
+        [SerializeField] private ProjectileConfig config; 
+        [SerializeField] private TrailRenderer trail;
 
         private float timeAlive;
 
@@ -13,8 +14,14 @@ namespace ZombieRace
 
         public void Launch(Vector3 position, Vector3 direction)
         {
+            this.trail.enabled = false;
+
             this.transform.position = position;
             this.transform.forward = direction.normalized;
+
+            this.trail.Clear();
+            this.trail.enabled = true;
+
             this.timeAlive = 0f;
         }
 
@@ -34,7 +41,9 @@ namespace ZombieRace
             if (health == null)
                 return;
 
-            health.TakeDamage(this.config.Damage);
+            Vector3 hitPoint = other.ClosestPoint(this.transform.position);
+
+            health.TakeDamage(DamageInfo.Detailed(this.config.Damage, this.transform.forward, hitPoint));
             this.Expired?.Invoke(this);
         }
     }

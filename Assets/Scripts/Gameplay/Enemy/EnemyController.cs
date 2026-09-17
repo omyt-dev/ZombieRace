@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Zenject;
 
 namespace ZombieRace
@@ -10,13 +12,16 @@ namespace ZombieRace
 
         public event Action<EnemyController> Died;
 
+        private EffectFactory effectFactory;
         private CarController carController;
         private Health carHealth;
 
         private EnemyStateMachine stateMachine;
         private EnemyAnimatorController enemyAnimator;
+        private EnemyHitReaction enemyHitReaction;
         private Health enemyHealth;
-
+        private HitFlash hitFlash;
+        
         private float currentSpeed = 0f;
 
         private float CurrentSpeed
@@ -34,14 +39,20 @@ namespace ZombieRace
         }
 
         [Inject]
-        private void Construct(CarController carController)
+        private void Construct(CarController carController, EffectFactory effectFactory)
         {
             this.enemyAnimator = this.GetComponent<EnemyAnimatorController>();
+            this.hitFlash = this.GetComponent<HitFlash>();
             this.stateMachine = new EnemyStateMachine();
 
             this.enemyHealth = this.GetComponent<Health>();
-            this.enemyHealth.Initialize(config.MaxHealth);
+            this.enemyHealth.Initialize(this.config.MaxHealth);
 
+            this.enemyHitReaction = this.GetComponent<EnemyHitReaction>();
+            this.enemyHitReaction.Initialize(this.config.HitReactionAngle, 
+                this.config.HitReactionDuration);
+
+            this.effectFactory = effectFactory;
             this.carController = carController;
             this.carHealth = carController.GetComponent<Health>();
 
@@ -52,6 +63,10 @@ namespace ZombieRace
             this.SubscribeEvent(
                 () => this.enemyHealth.Died += OnDied,
                 () => this.enemyHealth.Died -= OnDied);
+
+            this.SubscribeEvent(
+                () => this.enemyHealth.Damaged += this.OnDamaged,
+                () => this.enemyHealth.Damaged -= this.OnDamaged);
         }
 
         private void OnStateChanged(EEnemyState previousState, EEnemyState newState)
@@ -78,6 +93,9 @@ namespace ZombieRace
 
         private void Update()
         {
+            //if (!this.IsPlaying)
+            //    return;
+
             switch (this.stateMachine.CurrentState)
             {
                 case EEnemyState.Idle:
@@ -88,6 +106,19 @@ namespace ZombieRace
                     this.UpdateChase();
                     break;
             }
+        }
+
+        //protected override void ExitPlaying()
+        //{
+        //    this.stateMachine.TryChangeState(EEnemyState.Idle);
+        //}
+
+        private void OnDamaged(DamageInfo info)
+        {
+            this.CurrentSpeed -= this.config.HitReactionSlowing;
+            this.enemyHitReaction.Play(info.Direction);
+            this.effectFactory.Play(EEffectType.EnemyHit, info.HitPoint);
+            this.hitFlash.Play();
         }
 
         private void EnterIdle() { this.CurrentSpeed = 0f; }
@@ -119,14 +150,17 @@ namespace ZombieRace
             }
 
             direction.Normalize();
-            this.CurrentSpeed = Mathf.MoveTowards(this.CurrentSpeed, this.config.MoveSpeed, this.config.Acceleration * Time.deltaTime);
+
+            float targetSpeed = this.carHealth.CurrentHealth == 0 ? 0 : this.config.MoveSpeed;
+            this.CurrentSpeed = Mathf.MoveTowards(this.CurrentSpeed, targetSpeed, this.config.Acceleration * Time.deltaTime);
             this.transform.position += direction * (this.CurrentSpeed * Time.deltaTime);
         }
 
         private void EnterAttack()
         {
-            this.carHealth.TakeDamage(this.config.AttackDamage);
-            this.stateMachine.TryChangeState(EEnemyState.Dead);
+            this.carHealth.TakeDamage(DamageInfo.Simple(this.config.AttackDamage));
+            this.enemyHealth.TakeDamage(DamageInfo.Detailed(this.enemyHealth.CurrentHealth, -this.transform.forward, 
+                this.transform.position + Vector3.up));
         }
 
         private void OnDied()
@@ -135,6 +169,13 @@ namespace ZombieRace
         }
         private void EnterDead()
         {
+            this.currentSpeed = 0f;
+            this.StartCoroutine(this.DeathSequence());
+        }
+
+        private IEnumerator DeathSequence()
+        {
+            yield return new WaitForSeconds(this.config.DeathReactionDuration);
             this.Died?.Invoke(this);
         }
 
@@ -142,6 +183,7 @@ namespace ZombieRace
         {
             this.enemyAnimator.SetRandomIdle();
             this.enemyHealth.ResetHealth();
+            this.hitFlash.ResetFlash();
             this.stateMachine.Reset();
             this.CurrentSpeed = 0f;
         }

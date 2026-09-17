@@ -7,7 +7,8 @@ namespace ZombieRace
     public class Weapon : MonoBehaviour
     {
         [SerializeField] private Transform muzzle;
-
+        [SerializeField] private MuzzleFlash muzzleFlash;
+         
         private ProjectilePool projectilePool;
         private float fireRate = 5f;
         private float nextFireTime;
@@ -35,6 +36,7 @@ namespace ZombieRace
 
         private void Fire()
         {
+            this.muzzleFlash.Play();
             this.projectilePool.Spawn().Launch(this.muzzle.position, this.muzzle.forward);
         }
 

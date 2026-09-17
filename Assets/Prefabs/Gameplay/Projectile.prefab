@@ -32,6 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6462997998342703606}
+  - {fileID: 7865939794830992261}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4180825533271644367
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.Projectile
   config: {fileID: 11400000, guid: df8bd6b6083dd154883aefe2d40d7c15, type: 2}
+  trail: {fileID: 8594711712207462074}
 --- !u!54 &-39285700245711927
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -218,3 +220,70 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &6270016337873572803
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3104292946664368569}
+    m_Modifications:
+    - target: {fileID: 4191439699016626246, guid: 94023f8a3d68f41448772ee162bac6cb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.023
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191439699016626246, guid: 94023f8a3d68f41448772ee162bac6cb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191439699016626246, guid: 94023f8a3d68f41448772ee162bac6cb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191439699016626246, guid: 94023f8a3d68f41448772ee162bac6cb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191439699016626246, guid: 94023f8a3d68f41448772ee162bac6cb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191439699016626246, guid: 94023f8a3d68f41448772ee162bac6cb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191439699016626246, guid: 94023f8a3d68f41448772ee162bac6cb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191439699016626246, guid: 94023f8a3d68f41448772ee162bac6cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191439699016626246, guid: 94023f8a3d68f41448772ee162bac6cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191439699016626246, guid: 94023f8a3d68f41448772ee162bac6cb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960995384988905390, guid: 94023f8a3d68f41448772ee162bac6cb, type: 3}
+      propertyPath: m_Name
+      value: ProjectileTrail
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 94023f8a3d68f41448772ee162bac6cb, type: 3}
+--- !u!4 &7865939794830992261 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4191439699016626246, guid: 94023f8a3d68f41448772ee162bac6cb, type: 3}
+  m_PrefabInstance: {fileID: 6270016337873572803}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &8594711712207462074 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 2325298181679238521, guid: 94023f8a3d68f41448772ee162bac6cb, type: 3}
+  m_PrefabInstance: {fileID: 6270016337873572803}
+  m_PrefabAsset: {fileID: 0}

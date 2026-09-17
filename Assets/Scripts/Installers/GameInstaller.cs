@@ -1,5 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using Zenject; 
+using Zenject;
 
 namespace ZombieRace
 {
@@ -9,6 +12,10 @@ namespace ZombieRace
         [SerializeField] private GroundSegment groundPrefab;
         [SerializeField] private Projectile projectilePrefab;
         [SerializeField] private LevelConfig levelConfig;
+
+        [Header("Effects")]
+        [SerializeField] private Effect enemyHitEffectPrefab;
+        [SerializeField] private Effect carExplosionEffectPrefab;
 
         public override void InstallBindings()
         {
@@ -35,6 +42,18 @@ namespace ZombieRace
                 .UnderTransformGroup("Pool:Projectiles");
 
             Container.Bind<IResetable>().To<ProjectilePool>().FromResolve();
+
+            Container.BindMemoryPool<Effect, EffectPool>()
+                .WithId(EEffectType.EnemyHit)
+                .WithInitialSize(10)
+                .FromComponentInNewPrefab(this.enemyHitEffectPrefab)
+                .UnderTransformGroup("Pool:Effects");
+            Container.BindMemoryPool<Effect, EffectPool>()
+                .WithId(EEffectType.CarExplosion)
+                .WithInitialSize(1)
+                .FromComponentInNewPrefab(this.carExplosionEffectPrefab)
+                .UnderTransformGroup("Pool:Effects");
+            Container.Bind<EffectFactory>().AsSingle();
         }
     }
 }

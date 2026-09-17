@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bbc30bbb1dd23b48aae9e9053aa1ebc, type: 3}
   m_Name: EnemyConfig
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.EnemyConfig
-  <MaxHealth>k__BackingField: 100
+  <MaxHealth>k__BackingField: 100000
   <MoveSpeed>k__BackingField: 4
   <TurnSpeed>k__BackingField: 180
   <Acceleration>k__BackingField: 2
   <DetectionRange>k__BackingField: 50
   <AttackDistance>k__BackingField: 2
   <AttackDamage>k__BackingField: 20
+  <DeathReactionDuration>k__BackingField: 0.1
+  <HitReactionAngle>k__BackingField: 60
+  <HitReactionDuration>k__BackingField: 0.1
+  <HitReactionSlowing>k__BackingField: 0.5

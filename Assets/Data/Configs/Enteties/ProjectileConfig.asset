@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6153a1ce7818c464aae293a8e9479cfb, type: 3}
   m_Name: ProjectileConfig
   m_EditorClassIdentifier: Assembly-CSharp::ZombieRace.ProjectileConfig
-  <Speed>k__BackingField: 30
+  <Speed>k__BackingField: 60
   <Damage>k__BackingField: 60
   <Lifetime>k__BackingField: 5
